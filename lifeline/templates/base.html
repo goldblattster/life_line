@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block styles %}{% endblock %}
     <!--[if IE]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -14,7 +15,7 @@
 <body id="home">
     <header>
         <div id="logo">
-            <a href="#"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="Lifeline"></a>
+            <a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="Lifeline"></a>
         </div>
 
         <nav>
@@ -24,12 +25,47 @@
             </ul>
 
             <ul id="sessions_nav">
-                <li class="right"><a href="#">Sign In</a></li>
+                {% if user == "guest" %}
+                <li class="right"><a href="/sign_in">Sign In</a></li>
+                <li class="right"><a href="/register">Register</a></li>
+                {% else %}
+                <li class="right"><a href="/account">{{ user.name }}</a></li>
+                <li class="right"><a href="/sign_out">Sign Out</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
 
-    <div id="main">{% block main %}{% endblock %}</div>
+    <div id="main">
+        {% if alert_success %}
+            {% for alert in alert_success %}
+            <div class="container"><div class="alert alert-success">{{ alert }}</div></div>
+            {% endfor %}
+        {% endif %}
+
+        {% if alert_info %}
+            {% for alert in alert_info %}
+            <div class="container"><div class="alert alert-info">{{ alert }}</div></div>
+            {% endfor %}
+        {% endif %}
+
+        {% if alert_warning %}
+            {% for alert in alert_warning %}
+            <div class="container"><div class="alert alert-warning">{{ alert }}</div></div>
+            {% endfor %}
+        {% endif %}
+
+        {% if alert_danger %}
+            {% for alert in alert_danger %}
+            <div class="container"><div class="alert alert-danger">{{ alert }}</div></div>
+            {% endfor %}
+        {% endif %}
+
+
+        {% block main %}{% endblock %}
+    </div>
+
+    {% block scripts %}{% endblock %}
 
 </body>
 </html>

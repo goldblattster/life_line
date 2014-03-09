@@ -64,6 +64,8 @@ nav li a:hover {
   box-shadow: 0 0 8px rgba(0, 0, 0, .8);
   -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
   -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+
+  border: 5px solid #fff;
 }
 
 .circular.hero {
@@ -77,6 +79,7 @@ nav li a:hover {
 
 h1 {
   font-size: 28px;
+  height: 50px;
 }
 
 #hero_status p {
