@@ -148,12 +148,14 @@
 {% endblock %}
 
 {% block main %}
-<p>
+<div class="container">
+    <p>
     <input type="text" value="New text" id="txtContent">
     <input type="button" value="Add" title="Add new event" onclick="add();">
     <input type="button" value="Change" title="Change content of selected event" onclick="change();">
     <input type="button" value="Delete" title="Delete selected event" onclick="doDelete();">
 </p>
 
-	<div id="mytimeline"></div>
+    <div id="mytimeline"></div>
+</div>
 {% endblock %}
